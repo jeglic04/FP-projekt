@@ -1,0 +1,207 @@
+\documentclass[12pt,a4paper]{article}
+
+% Kodiranje in jezik
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[slovene]{babel}
+
+% Pisava in oblikovanje strani
+\usepackage{lmodern}
+\usepackage{geometry}
+\geometry{
+    a4paper,
+    left=2.5cm,
+    right=2.5cm,
+    top=2.5cm,
+    bottom=2.5cm
+}
+
+% Matematični paketi
+\usepackage{amsmath, amssymb, amsfonts}
+
+% Razmik med vrsticami
+\usepackage{setspace}
+\onehalfspacing
+
+% Začetek dokumenta
+\begin{document}
+
+\begin{center}
+    {\Large \textbf{Skupna geodetska razdalja}}\\[0.5cm]
+\end{center}
+
+
+Za povezan graf $G$ je \textbf{skupna geodetska razdalja} grafa $G$ definirana kot
+\[
+    \operatorname{tgd}(G)
+    =
+    \sum_{\{u,v\}\subseteq V(G)}
+    d_G(u,v)\,\sigma_G(u,v),
+\]
+kjer $d_G(u,v)$ označuje razdaljo med vozliščema $u$ in $v$, 
+$\sigma_G(u,v)$ pa število najkrajših poti (geodetk) med vozliščema 
+$u$ in $v$. Invarianta $\operatorname{tgd}(G)$ torej predstavlja 
+skupno dolžino vseh geodetk v grafu.
+
+To invarianto sta uvedla Marjanović in Gutman, vendar je 
+ostala večinoma prezrta. V zadnjem času je bila ponovno obravnavana.
+
+Graf imenujemo \textbf{geodetski}, če za vsak par vozlišč 
+$\{u,v\}\subseteq V(G)$ velja
+\[
+    \sigma_G(u,v)=1.
+\]
+
+Za vsak povezan graf velja
+\[
+    \operatorname{tgd}(G)\geq W(G),
+\]
+kjer je $W(G)$ Wienerjev indeks grafa. Enakost velja natanko tedaj, 
+ko je graf geodetski. Posebej velja
+\[
+    \operatorname{tgd}(T)=W(T)
+\]
+za vsako drevo $T$.
+
+Naj bo $H_{n,g}$ graf, ki ga dobimo iz cikla $C_g$ tako, da 
+na eno izmed njegovih vozlišč pripnemo $n-g$ listov.
+
+Za sodi $g$ definirajmo še graf $L'_{n,g}$, ki ga dobimo iz cikla
+\[
+    C_g=v_1v_2\cdots v_gv_1
+\]
+tako, da na vozlišče $v_1$ pripnemo pot dolžine
+\[
+    \left\lfloor\frac{n-g}{2}\right\rfloor,
+\]
+na diametralno nasprotno vozlišče $v_{g/2+1}$ pa pripnemo pot dolžine
+\[
+    \left\lceil\frac{n-g}{2}\right\rceil.
+\]
+ 
+Za lih obseg $g$ sovpadajo z ekstremalnimi grafi za Wienerjev indeks, 
+medtem ko pri sodem obsegu $g$ največjo vrednost doseže natanko 
+graf $L'_{n,g}$, najmanjšo vrednost pa natanko graf $H_{n,g}$.
+
+Med vsemi unikličnimi grafi $G$ z $n\geq 6$ vozlišči velja
+\[
+    \operatorname{tgd}(H_{n,3})
+    \leq
+    \operatorname{tgd}(G)
+    \leq
+    \operatorname{tgd}(L'_{n,4}).
+\]
+
+Med vsemi povezanimi grafi z $n$ vozlišči najmanjšo vrednost 
+doseže polni graf $K_n$, medtem ko problem določitve največje 
+vrednosti ostaja odprt. Znano je, da je ne doseže pot $P_n$.
+
+
+\paragraph{Izračun:}
+
+Pri obravnavi grafov v tem razdelku (in pri številu geodetskih 
+podpoti) poti ne naštevamo eksplicitno.
+
+En sam algoritem iskanja v širino (BFS), ki ga izvedemo iz 
+vozlišča $u$, nam poda razdalje $d_G(u,v)$ in števila 
+$\sigma_G(u,v)$ za vsa vozlišča $v$.
+
+Število najkrajših poti od $u$ do $v$ dobimo kot vsoto števil 
+najkrajših poti od $u$ do vseh sosedov vozlišča $v$, ki so 
+od $u$ oddaljeni za eno manj:
+\[
+    \sigma_G(u,v)
+    =
+    \sum_{\substack{w\in N(v)\\
+    d_G(u,w)=d_G(u,v)-1}}
+    \sigma_G(u,w),
+\]
+pri čemer velja
+\[
+    \sigma_G(u,u)=1.
+\]
+
+Zato lahko skupno geodetsko razdaljo izračunamo v času
+\[
+    O(nm),
+\]
+kjer je $n=|V(G)|$ število vozlišč in $m=|E(G)|$ število 
+povezav grafa.
+
+
+\section*{Skupna geodetska razdalja v kubičnih grafih}
+
+Obravnavamo povezane kubične grafe z $n$ vozlišči. Cilj je 
+preučiti vrednosti skupne geodetske razdalje 
+$\operatorname{tgd}(G)$ za kubične grafe ter raziskati njihove 
+ekstremalne strukture.
+
+Zanima nas, ali obstaja strukturni razlog, ki določa, kateri 
+kubični grafi imajo najmanjšo oziroma največjo vrednost 
+$\operatorname{tgd}(G)$.
+
+Posebej zanimivo je raziskati, ali se kubični grafi z verižasto 
+strukturo (na primer grafi, dobljeni z zaporednim združevanjem 
+kopij grafa $K_4-e$ z ustreznimi zaključnimi bloki) obnašajo 
+drugače kot kubični grafi z visoko stopnjo simetrije.
+
+Splošneje nas zanima, ali obstaja povezava med 
+$\operatorname{tgd}(G)$ in klasičnimi parametri grafov, kot so 
+premer, obseg ali število kratkih ciklov.
+
+\subsection{Raziskovalne naloge}
+
+\begin{enumerate}
+    \item Izračunajte vrednosti $\operatorname{tgd}(G)$ za vse 
+    povezane kubične grafe z največ $n\leq 20$ vozlišči 
+    (uporabite ukaz \texttt{geng -c -d3 -D3 n}; za $n=18$ 
+    izračun traja nekaj sekund, za $n=20$ pa nekaj minut).
+    
+    Dobljene ekstremalne grafe primerjajte z ekstremalnimi 
+    kubičnimi grafi glede na Wienerjev indeks. Izračunajte 
+    tudi te.
+
+    \item Določite grafe, ki se kažejo kot ekstremalni glede 
+    na vrednost $\operatorname{tgd}(G)$.
+
+    \item Testirajte, ali se pri majhnih vrednostih $n$ pojavlja 
+    kakšen značilen strukturni vzorec.
+
+    \item Za večje vrednosti $n$, pri katerih izčrpno 
+    naštevanje vseh kubičnih grafov ni več mogoče, uporabite 
+    hevristične metode iskanja.
+
+    To pomeni, da začnete z začetnim kubičnim grafom in ga 
+    večkrat zaporedoma spreminjate (na primer z zamenjavami 
+    povezav ali lokalnim preurejanjem povezav) oziroma 
+    generirate naključne kubične grafe. Iskanje nato usmerjate 
+    proti grafom z ekstremnimi vrednostmi $\operatorname{tgd}(G)$.
+
+    \item Za vsak obravnavani graf $G$ izračunajte in zabeležite 
+    tudi dodatne strukturne parametre:
+    \begin{itemize}
+        \item premer grafa $G$;
+        \item obseg grafa $G$;
+        \item osnovne podatke o ciklih, na primer število ciklov 
+        dolžine 4 in 6;
+        \item podatek o tem, ali se cikli prekrivajo oziroma 
+        tvorijo goste skupke.
+    \end{itemize}
+
+    Nato primerjajte, kako so te strukturne lastnosti povezane 
+    z vrednostjo $\operatorname{tgd}(G)$, ter poiščite morebitne 
+    vzorce in korelacije.
+
+    \item Oblikujte domnevo o kubičnih grafih z najmanjšo 
+    in največjo vrednostjo $\operatorname{tgd}(G)$ ter jo 
+    poskusite dokazati, po možnosti s pomočjo orodij umetne 
+    inteligence, za kakšno posebno družino grafov, na primer 
+    za verige kopij grafa $K_4-e$.
+\end{enumerate}
+
+\subsection{Predstavitev rezultatov}
+
+Predstavite rezultate raziskave.
+
+
+\end{document}
