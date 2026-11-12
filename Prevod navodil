@@ -129,7 +129,7 @@ kjer je $n=|V(G)|$ število vozlišč in $m=|E(G)|$ število
 povezav grafa.
 
 
-\section*{Skupna geodetska razdalja v kubičnih grafih}
+\subsection*{Skupna geodetska razdalja v kubičnih grafih}
 
 Obravnavamo povezane kubične grafe z $n$ vozlišči. Cilj je 
 preučiti vrednosti skupne geodetske razdalje 
@@ -149,36 +149,30 @@ Splošneje nas zanima, ali obstaja povezava med
 $\operatorname{tgd}(G)$ in klasičnimi parametri grafov, kot so 
 premer, obseg ali število kratkih ciklov.
 
-\subsection{Raziskovalne naloge}
+\subsection*{Raziskovalne naloge}
 
-\begin{enumerate}
-    \item Izračunajte vrednosti $\operatorname{tgd}(G)$ za vse 
-    povezane kubične grafe z največ $n\leq 20$ vozlišči 
-    (uporabite ukaz \texttt{geng -c -d3 -D3 n}; za $n=18$ 
-    izračun traja nekaj sekund, za $n=20$ pa nekaj minut).
-    
-    Dobljene ekstremalne grafe primerjajte z ekstremalnimi 
-    kubičnimi grafi glede na Wienerjev indeks. Izračunajte 
-    tudi te.
+Najprej se bo z uporabite ukaz \texttt{geng -c -d3 -D3 n} izračunalo 
+vrednosti $\operatorname{tgd}(G)$ za vse povezane kubične grafe z
+$n\leq 20$ vozlišči. Dobljene grafe se bo primerjalo z ekstremalnimi 
+kubičnimi grafi glede na Wienerjev indeks, ki se ga bo prav tako
+izračunalo.
 
-    \item Določite grafe, ki se kažejo kot ekstremalni glede 
-    na vrednost $\operatorname{tgd}(G)$.
+Določili bomo grafe, ki se kažejo kot ekstremalni glede 
+na vrednost $\operatorname{tgd}(G)$.
 
-    \item Testirajte, ali se pri majhnih vrednostih $n$ pojavlja 
-    kakšen značilen strukturni vzorec.
+Testiralo se bo ali se pri majhnih vrednostih $n$ pojavlja 
+kakšen značilen strukturni vzorec.
 
-    \item Za večje vrednosti $n$, pri katerih izčrpno 
-    naštevanje vseh kubičnih grafov ni več mogoče, uporabite 
-    hevristične metode iskanja.
+Za večje vrednosti $n$, pri katerih izčrpno naštevanje vseh kubičnih 
+grafov ni več mogoče, bomo uporabili hevristične metode iskanja.
 
-    To pomeni, da začnete z začetnim kubičnim grafom in ga 
-    večkrat zaporedoma spreminjate (na primer z zamenjavami 
-    povezav ali lokalnim preurejanjem povezav) oziroma 
-    generirate naključne kubične grafe. Iskanje nato usmerjate 
-    proti grafom z ekstremnimi vrednostmi $\operatorname{tgd}(G)$.
+To pomeni, da začnemo z začetnim kubičnim grafom in ga večkrat zaporedoma 
+spreminjamo (na primer z zamenjavami povezav ali lokalnim preurejanjem 
+povezav) oziroma generiramo naključne kubične grafe. Iskanje bomo nato
+usmerili proti grafom z ekstremnimi vrednostmi $\operatorname{tgd}(G)$.
 
-    \item Za vsak obravnavani graf $G$ izračunajte in zabeležite 
-    tudi dodatne strukturne parametre:
+Za vsak obravnavani graf $G$ bomo izračunali in zabeležili tudi dodatne 
+strukturne parametre kot so:
     \begin{itemize}
         \item premer grafa $G$;
         \item obseg grafa $G$;
@@ -188,20 +182,13 @@ premer, obseg ali število kratkih ciklov.
         tvorijo goste skupke.
     \end{itemize}
 
-    Nato primerjajte, kako so te strukturne lastnosti povezane 
-    z vrednostjo $\operatorname{tgd}(G)$, ter poiščite morebitne 
-    vzorce in korelacije.
+Nato bomo primerjali, kako so te strukturne lastnosti povezane z vrednostjo 
+$\operatorname{tgd}(G)$, ter poiskali morebitne vzorce in korelacije.
 
-    \item Oblikujte domnevo o kubičnih grafih z najmanjšo 
-    in največjo vrednostjo $\operatorname{tgd}(G)$ ter jo 
-    poskusite dokazati, po možnosti s pomočjo orodij umetne 
-    inteligence, za kakšno posebno družino grafov, na primer 
-    za verige kopij grafa $K_4-e$.
-\end{enumerate}
-
-\subsection{Predstavitev rezultatov}
-
-Predstavite rezultate raziskave.
+Oblikovali bomo domnevo o kubičnih grafih z najmanjšo in največjo vrednostjo
+$\operatorname{tgd}(G)$ ter jo poskusili dokazati s pomočjo orodij umetne 
+inteligence, za kakšno posebno družino grafov, kot na primer za verige 
+kopij grafa $K_4-e$.
 
 
 \end{document}
